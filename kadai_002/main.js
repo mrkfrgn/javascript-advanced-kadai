@@ -10,7 +10,7 @@ const start = document.getElementById('start');
 const count = document.getElementById('count');
 const displayCounter = document.getElementById('letter-counter');
 // 追加したコード
-const timeUp = document.getElementById('time-up');
+// const timeUp = document.getElementsByClassName('wrap');
 
 const textLists = [
   'Hello World', 'This is my App', 'How are you?',
@@ -65,11 +65,11 @@ const rankCheck = score => {
   let text = '';
 
   if (score < 100) {
-    text = `あなたのランクはCです。/nBランクまであと${100 - score}文字です。`;
+    text = `あなたのランクはCです。\nBランクまであと${100 - score}文字です。`;
   } else if (score < 200) {
-    text = `あなたのランクはBです。/nAランクまであと${200 - score}文字です。`;
+    text = `あなたのランクはBです。\nAランクまであと${200 - score}文字です。`;
   } else if (score < 300) {
-    text = `あなたのランクはAです。/nSランクまであと${300 - score}文字です。`;
+    text = `あなたのランクはAです。\nSランクまであと${300 - score}文字です。`;
   } else if (score >= 300) {
     text = `あなたのランクはSです。おめでとうございます！`;
   }
@@ -83,14 +83,17 @@ const gameOver = id => {
   clearInterval(id);
 
   // 追加したコード
-  timeUp.textContent = 'タイムアップ！';
+  wrap.textContent = 'タイムアップ！';
+
+  setTimeout(() => {
 
   const result = confirm(rankCheck(score));
 
   if (result == true) {
     window.location.reload();
   }
-
+  
+}, 10);
 };
 
 const timer = () => {
@@ -116,3 +119,4 @@ start.addEventListener('click', () => {
 });
 
 untypedfield.textContent = 'スタートボタンで開始';
+
